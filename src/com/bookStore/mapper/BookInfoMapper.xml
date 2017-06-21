@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bookStore.mapper.BookInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.bookStore.model.BookInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="discription" property="discription" jdbcType="VARCHAR" />
+    <result column="book_type" property="bookType" jdbcType="VARCHAR" />
+    <result column="borrow_times" property="borrowTimes" jdbcType="INTEGER" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="collection_type" property="collectionType" jdbcType="INTEGER" />
+    <result column="publish_time" property="publishTime" jdbcType="DATE" />
+    <result column="language" property="language" jdbcType="VARCHAR" />
+    <result column="picture_url" property="pictureUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, discription, book_type, borrow_times, author, keyword, collection_type, publish_time, 
+    language, picture_url
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bookStore.model.BookInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from book_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from book_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from book_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bookStore.model.BookInfoExample" >
+    delete from book_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bookStore.model.BookInfo" >
+    insert into book_info (id, discription, book_type, 
+      borrow_times, author, keyword, 
+      collection_type, publish_time, language, 
+      picture_url)
+    values (#{id,jdbcType=INTEGER}, #{discription,jdbcType=VARCHAR}, #{bookType,jdbcType=VARCHAR}, 
+      #{borrowTimes,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR}, 
+      #{collectionType,jdbcType=INTEGER}, #{publishTime,jdbcType=DATE}, #{language,jdbcType=VARCHAR}, 
+      #{pictureUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bookStore.model.BookInfo" >
+    insert into book_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="discription != null" >
+        discription,
+      </if>
+      <if test="bookType != null" >
+        book_type,
+      </if>
+      <if test="borrowTimes != null" >
+        borrow_times,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="collectionType != null" >
+        collection_type,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="language != null" >
+        language,
+      </if>
+      <if test="pictureUrl != null" >
+        picture_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="discription != null" >
+        #{discription,jdbcType=VARCHAR},
+      </if>
+      <if test="bookType != null" >
+        #{bookType,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowTimes != null" >
+        #{borrowTimes,jdbcType=INTEGER},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionType != null" >
+        #{collectionType,jdbcType=INTEGER},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=DATE},
+      </if>
+      <if test="language != null" >
+        #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureUrl != null" >
+        #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bookStore.model.BookInfoExample" resultType="java.lang.Integer" >
+    select count(*) from book_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update book_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.discription != null" >
+        discription = #{record.discription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookType != null" >
+        book_type = #{record.bookType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.borrowTimes != null" >
+        borrow_times = #{record.borrowTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.author != null" >
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keyword != null" >
+        keyword = #{record.keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collectionType != null" >
+        collection_type = #{record.collectionType,jdbcType=INTEGER},
+      </if>
+      <if test="record.publishTime != null" >
+        publish_time = #{record.publishTime,jdbcType=DATE},
+      </if>
+      <if test="record.language != null" >
+        language = #{record.language,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pictureUrl != null" >
+        picture_url = #{record.pictureUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update book_info
+    set id = #{record.id,jdbcType=INTEGER},
+      discription = #{record.discription,jdbcType=VARCHAR},
+      book_type = #{record.bookType,jdbcType=VARCHAR},
+      borrow_times = #{record.borrowTimes,jdbcType=INTEGER},
+      author = #{record.author,jdbcType=VARCHAR},
+      keyword = #{record.keyword,jdbcType=VARCHAR},
+      collection_type = #{record.collectionType,jdbcType=INTEGER},
+      publish_time = #{record.publishTime,jdbcType=DATE},
+      language = #{record.language,jdbcType=VARCHAR},
+      picture_url = #{record.pictureUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bookStore.model.BookInfo" >
+    update book_info
+    <set >
+      <if test="discription != null" >
+        discription = #{discription,jdbcType=VARCHAR},
+      </if>
+      <if test="bookType != null" >
+        book_type = #{bookType,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowTimes != null" >
+        borrow_times = #{borrowTimes,jdbcType=INTEGER},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionType != null" >
+        collection_type = #{collectionType,jdbcType=INTEGER},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=DATE},
+      </if>
+      <if test="language != null" >
+        language = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureUrl != null" >
+        picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bookStore.model.BookInfo" >
+    update book_info
+    set discription = #{discription,jdbcType=VARCHAR},
+      book_type = #{bookType,jdbcType=VARCHAR},
+      borrow_times = #{borrowTimes,jdbcType=INTEGER},
+      author = #{author,jdbcType=VARCHAR},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      collection_type = #{collectionType,jdbcType=INTEGER},
+      publish_time = #{publishTime,jdbcType=DATE},
+      language = #{language,jdbcType=VARCHAR},
+      picture_url = #{pictureUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
