@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>预约登录</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Latest jQuery form server -->
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <!-- Bootstrap JS form CDN -->
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="load_body">
+    <div class="logo_style">
+        <img src="img/denglu.png" >
+    </div>
+    <div class="load_area">
+        <form  class="admin" action="/userLogin.action" method="post">
+            <div class="form-group">
+                <label for="username" class="control-label">用户名</label>
+                <div class="">
+                    <input type="text" class="form-control"  name="username" id="username" placeholder="请输入用户名">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class=" control-label">密码</label>
+                <div class="">
+                    <input type="password" class="form-control" name="password"  id="inputPassword3" placeholder="请输入密码">
+                </div>
+            </div>
+            <div class="form-group">
+    
+            </div>
+            <div class="form-group ">
+                <input value="登录" name="log-in" type="submit" class="btn btn-default btn-block center-block">
+            </div>
+           
+        </form>
+    </div>
+</body>
+</html>

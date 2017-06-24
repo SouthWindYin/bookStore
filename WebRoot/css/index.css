@@ -1,0 +1,21 @@
+html,body{
+    height:100%;
+    width:100%;
+}
+
+.header{
+    background-color:#f4f4f4;
+}
+.header a{
+    font-size:16px;
+    padding:10px 0 10px;
+}
+.welcome{
+    float:left;
+}
+.login-btn{
+    float:right;
+}
+.left-bar{
+    
+}

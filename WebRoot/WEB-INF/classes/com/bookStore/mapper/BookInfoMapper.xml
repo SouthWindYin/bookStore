@@ -3,7 +3,7 @@
 <mapper namespace="com.bookStore.mapper.BookInfoMapper" >
   <resultMap id="BaseResultMap" type="com.bookStore.model.BookInfo" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="discription" property="discription" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="book_type" property="bookType" jdbcType="VARCHAR" />
     <result column="borrow_times" property="borrowTimes" jdbcType="INTEGER" />
     <result column="author" property="author" jdbcType="VARCHAR" />
@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, discription, book_type, borrow_times, author, keyword, collection_type, publish_time, 
+    id, description, book_type, borrow_times, author, keyword, collection_type, publish_time, 
     language, picture_url
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bookStore.model.BookInfoExample" >
@@ -95,6 +95,11 @@
     from book_info
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectTopBookInfo" resultMap="BaseResultMap" parameterType="int">
+  	select
+    <include refid="Base_Column_List" />
+    from book_info limit 0,#{num};
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from book_info
     where id = #{id,jdbcType=INTEGER}
@@ -106,11 +111,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bookStore.model.BookInfo" >
-    insert into book_info (id, discription, book_type, 
+    insert into book_info (id, description, book_type, 
       borrow_times, author, keyword, 
       collection_type, publish_time, language, 
       picture_url)
-    values (#{id,jdbcType=INTEGER}, #{discription,jdbcType=VARCHAR}, #{bookType,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{bookType,jdbcType=VARCHAR}, 
       #{borrowTimes,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR}, 
       #{collectionType,jdbcType=INTEGER}, #{publishTime,jdbcType=DATE}, #{language,jdbcType=VARCHAR}, 
       #{pictureUrl,jdbcType=VARCHAR})
@@ -121,8 +126,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="discription != null" >
-        discription,
+      <if test="description != null" >
+        description,
       </if>
       <if test="bookType != null" >
         book_type,
@@ -153,8 +158,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="discription != null" >
-        #{discription,jdbcType=VARCHAR},
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
       <if test="bookType != null" >
         #{bookType,jdbcType=VARCHAR},
@@ -194,8 +199,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.discription != null" >
-        discription = #{record.discription,jdbcType=VARCHAR},
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
       </if>
       <if test="record.bookType != null" >
         book_type = #{record.bookType,jdbcType=VARCHAR},
@@ -229,7 +234,7 @@
   <update id="updateByExample" parameterType="map" >
     update book_info
     set id = #{record.id,jdbcType=INTEGER},
-      discription = #{record.discription,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
       book_type = #{record.bookType,jdbcType=VARCHAR},
       borrow_times = #{record.borrowTimes,jdbcType=INTEGER},
       author = #{record.author,jdbcType=VARCHAR},
@@ -245,8 +250,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.bookStore.model.BookInfo" >
     update book_info
     <set >
-      <if test="discription != null" >
-        discription = #{discription,jdbcType=VARCHAR},
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="bookType != null" >
         book_type = #{bookType,jdbcType=VARCHAR},
@@ -277,7 +282,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bookStore.model.BookInfo" >
     update book_info
-    set discription = #{discription,jdbcType=VARCHAR},
+    set description = #{description,jdbcType=VARCHAR},
       book_type = #{bookType,jdbcType=VARCHAR},
       borrow_times = #{borrowTimes,jdbcType=INTEGER},
       author = #{author,jdbcType=VARCHAR},

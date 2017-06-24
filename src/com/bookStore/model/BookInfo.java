@@ -5,7 +5,7 @@ import java.util.Date;
 public class BookInfo {
     private Integer id;
 
-    private String discription;
+    private String description;
 
     private String bookType;
 
@@ -31,12 +31,12 @@ public class BookInfo {
         this.id = id;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDiscription(String discription) {
-        this.discription = discription == null ? null : discription.trim();
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public String getBookType() {
