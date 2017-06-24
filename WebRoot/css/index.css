@@ -8,14 +8,16 @@ html,body{
 }
 .header a{
     font-size:16px;
-    padding:10px 0 10px;
 }
 .welcome{
     float:left;
+    padding:10px 0 10px;
 }
 .login-btn{
-    float:right;
+    float: left;
+    padding:10px 0 10px;
 }
+
 .left-bar{
-    
+
 }

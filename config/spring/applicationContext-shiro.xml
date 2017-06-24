@@ -28,7 +28,7 @@
 		<property name="filterChainDefinitions">
 			<value>
 			
-				/=anon
+
 				/login.jsp=anon
 				/logout.action*=anon
 

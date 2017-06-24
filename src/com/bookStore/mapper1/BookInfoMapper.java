@@ -1,4 +1,4 @@
-package com.bookStore.mapper;
+package com.bookStore.mapper1;
 
 import com.bookStore.model.BookInfo;
 import com.bookStore.model.BookInfoExample;

@@ -23,6 +23,8 @@ public class BookInfo {
 
     private String pictureUrl;
 
+    private String title;
+
     public Integer getId() {
         return id;
     }
@@ -101,5 +103,13 @@ public class BookInfo {
 
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl == null ? null : pictureUrl.trim();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 }

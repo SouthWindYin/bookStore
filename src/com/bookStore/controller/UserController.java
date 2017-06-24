@@ -27,4 +27,10 @@ public class UserController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping("/logout.action")
+	public String logout(){
+		Subject currentUser = SecurityUtils.getSubject();
+		currentUser.logout();
+		return "redirect:/";
+	}
 }

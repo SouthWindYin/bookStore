@@ -27,19 +27,17 @@
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
- 		<sqlMapGenerator targetPackage="com.bookStore.mapper"
+ 		<sqlMapGenerator targetPackage="com.bookStore.mapper1"
 			targetProject=".\src">
 			<property name="enableSubPackages" value="true" />	
 		</sqlMapGenerator> 
 
 	<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.bookStore.mapper" targetProject=".\src">
+			targetPackage="com.bookStore.mapper1" targetProject=".\src">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator> 
 
 		
-		<table tableName="user"></table>
-		<table tableName="book"></table>
 		<table tableName="book_info"></table>
 		
 

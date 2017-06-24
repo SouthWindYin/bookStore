@@ -12,6 +12,7 @@
     <result column="publish_time" property="publishTime" jdbcType="DATE" />
     <result column="language" property="language" jdbcType="VARCHAR" />
     <result column="picture_url" property="pictureUrl" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, description, book_type, borrow_times, author, keyword, collection_type, publish_time, 
-    language, picture_url
+    language, picture_url, title
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bookStore.model.BookInfoExample" >
     select
@@ -95,7 +96,7 @@
     from book_info
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectTopBookInfo" resultMap="BaseResultMap" parameterType="int">
+      <select id="selectTopBookInfo" resultMap="BaseResultMap" parameterType="int">
   	select
     <include refid="Base_Column_List" />
     from book_info limit 0,#{num};
@@ -114,11 +115,11 @@
     insert into book_info (id, description, book_type, 
       borrow_times, author, keyword, 
       collection_type, publish_time, language, 
-      picture_url)
+      picture_url, title)
     values (#{id,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{bookType,jdbcType=VARCHAR}, 
       #{borrowTimes,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR}, 
       #{collectionType,jdbcType=INTEGER}, #{publishTime,jdbcType=DATE}, #{language,jdbcType=VARCHAR}, 
-      #{pictureUrl,jdbcType=VARCHAR})
+      #{pictureUrl,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bookStore.model.BookInfo" >
     insert into book_info
@@ -153,6 +154,9 @@
       <if test="pictureUrl != null" >
         picture_url,
       </if>
+      <if test="title != null" >
+        title,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -184,6 +188,9 @@
       </if>
       <if test="pictureUrl != null" >
         #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -226,6 +233,9 @@
       <if test="record.pictureUrl != null" >
         picture_url = #{record.pictureUrl,jdbcType=VARCHAR},
       </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -242,7 +252,8 @@
       collection_type = #{record.collectionType,jdbcType=INTEGER},
       publish_time = #{record.publishTime,jdbcType=DATE},
       language = #{record.language,jdbcType=VARCHAR},
-      picture_url = #{record.pictureUrl,jdbcType=VARCHAR}
+      picture_url = #{record.pictureUrl,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -277,6 +288,9 @@
       <if test="pictureUrl != null" >
         picture_url = #{pictureUrl,jdbcType=VARCHAR},
       </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -290,7 +304,8 @@
       collection_type = #{collectionType,jdbcType=INTEGER},
       publish_time = #{publishTime,jdbcType=DATE},
       language = #{language,jdbcType=VARCHAR},
-      picture_url = #{pictureUrl,jdbcType=VARCHAR}
+      picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
