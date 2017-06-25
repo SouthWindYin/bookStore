@@ -3,6 +3,7 @@
 <%@page import="org.apache.shiro.SecurityUtils"%>
 <%@page import="org.apache.shiro.subject.Subject"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <!DOCTYPE html>
 <html>
@@ -12,18 +13,11 @@
 <link href="css/index.css" rel="stylesheet" />
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-
 <script src="js/hotBook.js"></script>
-<script src="js/index.js"></script>
 <style type="text/css">
-	.book{
-	text-align:center;
-	}
 	.bookPic{
-	height:200px;
 	width:100%;
 	}
-
 </style>
 </head>
 
@@ -54,15 +48,15 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="col-md-3">
-			<div class="list-group bookInfo">
-				<a href="#" class="list-group-item active">全部</a>
+<!-- 		<div class="col-md-3">
+			<div class="list-group">
+				<a href="#" class="list-group-item">全部</a>
 				<a href="#" class="list-group-item">图书</a>
 				<a href="#" class="list-group-item">期刊杂志</a>
 				<a href="#" class="list-group-item">学术论文</a>
 				<a href="#" class="list-group-item">文献</a>
 			</div>
-		</div>
+		</div> -->
 		<!-- <div class="col-md-7 sidebar2">
 			<div id="myCarousel" class="carousel slide">
 				轮播（Carousel）指标
@@ -85,54 +79,32 @@
 					href="#myCarousel" data-slide="next">&rsaquo; </a>
 			</div>
 		</div> -->
-		<div class="col-md-7">
-		<div class="row bookInfoList">
-		</div>
-			<!-- <table class="table">
-				<thead>
-					<tr>
-						<th>图书</th>
-						<th>图书</th>
-						<th>图书</th>
-						<th>图书</th>
-						<th>图书</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>java核心技术</td>
-						<td>java核心技术</td>
-						<td>java核心技术</td>
-						<td>java核心技术</td>
-						<td>java核心技术</td>
-					</tr>
-					<tr>
-						<td>java核心技术</td>
-						<td>java核心技术</td>
-						<td>java核心技术</td>
-						<td>java核心技术</td>
-						<td>java核心技术</td>
-					</tr>
-					<tr>
-						<td>java核心技术</td>
-						<td>java核心技术</td>
-						<td>java核心技术</td>
-						<td>java核心技术</td>
-						<td>java核心技术</td>
-					</tr>
-				</tbody>
-			</table> -->
-			<!-- 分页 -->
-			<nav aria-label="Page navigation">
-				<ul class="pagination">
-					<li><a href="#" aria-label="Previous"> <span
-							aria-hidden="true">&laquo;</span>
-					</a></li>
-					<li><a href="#" aria-label="Next"> <span
-							aria-hidden="true">&raquo;</span>
-					</a></li>
-				</ul>
-			</nav>
+		<div class="col-md-10">
+			
+			<div class="row">
+				<div class="col-md-4">
+				<c:choose>
+				<c:when test="${!empty book.pictureUrl }">
+				<img src="${book.pictureUrl }" class="img-thumbnail bookPic">
+				</c:when>
+				<c:otherwise>
+				<img src="img/unknow.jpg" class="img-thumbnail bookPic">
+				</c:otherwise>
+				</c:choose>
+				</div>
+				<div class="col-md-8">
+					<h1>${book.title }</h1>
+					<h4><small>${book.description }</small></h4>
+					<table class="table">
+					<tr><td>作者：${book.author }</td></tr>
+					<tr><td>语言：${book.language }</td></tr>
+					<tr><td>出版时间：<fmt:formatDate value="${book.publishTime }" pattern="yyyy年MM月"/> </td></tr>
+					<tr><td>关键字：${book.keyword }</td></tr>
+					<tr><td>书籍类型：${book.bookType }</td></tr>
+					<tr><td>馆藏书籍：${book.borrowTimes }</td></tr>
+					</table>
+				</div>
+			</div>
 		</div>
 
 		<div class="col-md-2 hotBook">

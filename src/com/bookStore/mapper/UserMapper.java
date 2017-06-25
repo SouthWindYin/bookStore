@@ -21,6 +21,10 @@ public interface UserMapper {
     User selectByPrimaryKey(Integer id);
     
     User selectAdminByUsername(String username);
+    
+    int banUserById(int id);
+    
+    int launchUserById(int id);
 
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 

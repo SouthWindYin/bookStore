@@ -99,7 +99,7 @@
       <select id="selectTopBookInfo" resultMap="BaseResultMap" parameterType="int">
   	select
     <include refid="Base_Column_List" />
-    from book_info limit 0,#{num};
+    from book_info order by borrow_times desc limit 0,#{num};
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from book_info
@@ -308,4 +308,18 @@
       title = #{title,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectBookInfoByPage" parameterType="map" resultMap="BaseResultMap" >
+  	select 
+    <include refid="Base_Column_List" />
+    from book_info 
+    limit #{startNum},#{endNum}
+  </select>
+  
+  <select id="selectBookInfoByBookType" parameterType="map" resultMap="BaseResultMap">
+    	select 
+    <include refid="Base_Column_List" />
+    from book_info 
+    where book_type=#{bookType}
+    limit #{startNum},#{endNum}
+  </select>
 </mapper>

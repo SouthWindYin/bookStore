@@ -230,4 +230,14 @@
       authority = #{authority,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="banUserById" parameterType="int">
+  	update user
+  	set authority=3
+  	where id=#{id};
+  </update>
+ <update id="launchUserById" parameterType="int">
+  	update user
+  	set authority=2
+  	where id=#{id};
+  </update>
 </mapper>

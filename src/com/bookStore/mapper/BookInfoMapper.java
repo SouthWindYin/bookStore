@@ -19,6 +19,8 @@ public interface BookInfoMapper {
     List<BookInfo> selectByExample(BookInfoExample example);
     
     List<BookInfo> selectTopBookInfo(int num);
+    
+    List<BookInfo> selectBookInfoByPage(@Param("startNum")int startNum,@Param("endNum")int endNum);
 
     BookInfo selectByPrimaryKey(Integer id);
 
@@ -29,4 +31,7 @@ public interface BookInfoMapper {
     int updateByPrimaryKeySelective(BookInfo record);
 
     int updateByPrimaryKey(BookInfo record);
+
+	List<BookInfo> selectBookInfoByBookType(@Param("bookType")String bookType, @Param("startNum")int startNum, @Param("endNum")int endNum);
+
 }
